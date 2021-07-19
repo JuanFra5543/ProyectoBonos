@@ -26,11 +26,8 @@ router.get('/bono/:id', async (req, res) => {
 router.get('/bono/fecha/:fechainit/:fechafin',async (req,res)=>{
     const fechaInit = req.params.fechainit;
     const fechaFin = req.params.fechafin;
-    console.log(new Date(fechaInit))
-    
     try{
         const bonoDB = await Bono.find(({"bonoFecha": {"$gte": new Date(fechaInit), "$lte": new Date(fechaFin)}})).populate({path:'usuario', select:'empleadoNombre'});
-        console.log(Object.keys(bonoDB).length)
         res.json(bonoDB);
     } catch(e){
         return res.status(500).json({
@@ -47,7 +44,6 @@ router.post('/nuevoBono',async (req, res) => {
         bonoCantidad: req.body.bonoCantidad,
         usuario: req.body.usuario
     }
-    console.log(new Date(req.body.bonoFecha))
     try{
         const bonoDB = await Bono.create(body);
         res.status(200).json(bonoDB);
