@@ -22,7 +22,7 @@ router.get('/bono/:id', async (req, res) => {
     }
 });
 
-//ruta para obtener query de todos los dias de un mes especifico
+//ruta para obtener query con las fechas deseadas
 router.get('/bono/fecha/:fechainit/:fechafin',async (req,res)=>{
     const fechaInit = req.params.fechainit;
     const fechaFin = req.params.fechafin;

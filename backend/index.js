@@ -3,13 +3,12 @@ import morgan from 'morgan'
 
 //Trae express al servidor
 const express = require("express");
-const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
 
 //inicializa proyecto
 const app = express();
 
-/* Importacion de rutas */
+// Importacion de rutas 
 const empleadoRoute = require("./routes/empleadoRoute.js");
 const bonoRoute = require("./routes/bonoRoute.js");
 
@@ -38,17 +37,13 @@ if(!db){
 //Asigna el puerto
 var port = process.env.PORT || 5000;
 
-//Generar mensaje en la ruta
-app.get('/', (req, res) => res.send("Wenache"));
-
-
 app.use("/api",empleadoRoute);
 app.use("/api",bonoRoute);
 
 const history = require("connect-history-api-fallback");
 app.use(history());
 
-/* Hacer que escuche el puerto */
+// Hacer que escuche el puerto 
 app.listen(port, ()=>{
     console.log("localhost:",port)
 });
